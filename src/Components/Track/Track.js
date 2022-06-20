@@ -7,21 +7,27 @@ class Track extends React.Component {
     super(props);
 
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
   
   renderAction() {
+    const sign = this.props.isRemoval ? '-' : '+';
     return (
-      <button 
+      <button
         className="Track-action"
-        onClick={this.addTrack}
+        onClick={sign === '+' ? this.addTrack : this.removeTrack}
       >
-        {this.props.isRemoval ? '-' : '+'}
+        {sign}
       </button>
-    );
+    )
   }
 
   addTrack() {
     this.props.onAdd(this.props.track);
+  }
+
+  removeTrack() {
+    this.props.onRemove(this.props.track);
   }
   
   render() {
