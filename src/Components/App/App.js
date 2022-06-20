@@ -58,6 +58,7 @@ class App extends React.Component {
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
   }
   
   addTrack(track) {
@@ -71,6 +72,10 @@ class App extends React.Component {
     this.setState({ playlistTracks: 
       this.state.playlistTracks.filter(savedTrack => savedTrack.id !== track.id) 
     });
+  }
+
+  updatePlaylistName(name) {
+    this.setState({ playlistName: name });
   }
 
   render() {
@@ -87,8 +92,8 @@ class App extends React.Component {
             <Playlist 
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
-              onAdd={this.addTrack} // Delete this somehow - Playlist does not need this method
               onRemove={this.removeTrack}
+              onNameChange={this.updatePlaylistName}
             />
           </div>
         </div>
