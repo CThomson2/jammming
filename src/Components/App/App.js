@@ -1,5 +1,11 @@
 import React from 'react'
 
+import SearchResults from '../SearchResults/SearchResults';
+import SearchBar from '../SearchBar/SearchBar';
+import Playlist from '../Playlist/Playlist';
+import TrackList from '../TrackList/TrackList';
+import Track from '../Track/Track';
+
 import './App.css';
 
 class App extends React.Component {
@@ -11,20 +17,26 @@ class App extends React.Component {
         {
           name: 'Tiny Dancer',
           artist: 'Elton John',
-          name: 'Madman Across the Water',
+          album: 'Madman Across the Water',
           id: 1000
         },
         {
           name: 'Skeletons',
           artist: 'Travis Scott',
-          name: 'Astroworld',
+          album: 'Astroworld',
           id: 1001
         },
         {
           name: 'Sober',
           artist: 'Childish Gambino',
-          name: 'Kaual',
+          album: 'Kaual',
           id: 1002
+        },
+        {
+          name: 'The Motto',
+          artist: 'Drake',
+          album: 'Passionfruit',
+          id: 1004
         }
       ],
       playlistName: 'Crypto Vibes',
@@ -32,13 +44,13 @@ class App extends React.Component {
         {
           name: 'Sober',
           artist: 'Childish Gambino',
-          name: 'Kaual',
+          album: 'Kaual',
           id: 1002
         },
         {
           name: 'Skeletons',
           artist: 'Travis Scott',
-          name: 'Astroworld',
+          album: 'Astroworld',
           id: 1001
         }
       ]
@@ -63,11 +75,12 @@ class App extends React.Component {
           <div className="App-playlist">
             <SearchResults 
               searchResults={this.state.searchResults}
-              onAdd={this.addTrack}  
+              onAdd={this.addTrack}
             />
             <Playlist 
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
+              onAdd={this.addTrack}
             />
           </div>
         </div>
