@@ -3,6 +3,7 @@ import React from 'react'
 import SearchResults from '../SearchResults/SearchResults';
 import SearchBar from '../SearchBar/SearchBar';
 import Playlist from '../Playlist/Playlist';
+import Spotify from '../../utils/Spotify';
 
 import './App.css';
 
@@ -43,12 +44,17 @@ class App extends React.Component {
 
   /* Spotify API Integration */
   savePlaylist() {
-    const trackURIs = [];
-    this.state.playlistTracks.forEach(track => trackURIs.push(track));
+    const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+    this.setState({
+      playlistName: 'New Playlist',
+      playlistTracks: []
+    })
   }
 
   search(text) {
-    console.log('search term :>>', text);
+    let spotifyRes = Spotify.search(text);
+    this.setState({ searchResults: spotifyRes });
   }
 
   /* Render JSX */
